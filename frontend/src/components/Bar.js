@@ -27,7 +27,7 @@ const Bar = ({takeout, setTakeout}) => {
                 {takeout && <div className="px-8 text-center">Takeout</div>}
             </div>
             <div className="flex flex-col justify-center gap-2">
-                <div className="text-white font-bold">Price: {price}$</div>
+                <div className="text-yellow-800 font-bold">Price: {price}$</div>
                 <Link to="/" className="text-center" onClick={() => {
                     setTakeout(false)
                     dispatch(setProducts([]))
@@ -39,7 +39,7 @@ const Bar = ({takeout, setTakeout}) => {
                 <ul className="flex gap-10 items-center justify-center">
                     {currentOrder.map(product => (
                         <li key={product.id} className="flex flex-col bg-amber-500 items-center justify-center p-4 rounded-lg">
-                            <div className="max-w-xs b">{product.name}   {product.amount}x</div>
+                            <div className="max-w-xs b font-black">{product.name}   {product.amount}x</div>
                             <div>{product.price * product.amount}$</div>
                             <button onClick={() => handleDeleteOrder(product.id)} className="rounded-lg bg-red-500 text-white font-bold p-1 hover:bg-red-600">Delete</button>
                         </li>
