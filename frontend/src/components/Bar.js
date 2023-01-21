@@ -1,14 +1,25 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {setProducts} from "../redux/currentOrder";
 
-const Bar = ({order, setOrder, takeout, setTakeout}) => {
-    let price = order.reduce((acc, elem) => acc + (elem.price * elem.amount), 0);
+const Bar = ({takeout, setTakeout}) => {
+
+    // variables
+    const dispatch = useDispatch();
+    const currentOrder = useSelector((state) => state.currentOrder.order)
+    console.log(currentOrder)
+    let price = currentOrder.reduce((acc, elem) => acc + (elem.price * elem.amount), 0);
+
+    // functions
     const handleDeleteOrder = (id) => {
-        const newOrderList = order.filter(product => product.id !== id);
-        setOrder(newOrderList);
-        price = order.reduce((acc, elem) => acc + (elem.price * elem.amount), 0);
+        const newOrderList = currentOrder.filter(product => product.id !== id);
+        dispatch(setProducts(newOrderList))
+        price = currentOrder.reduce((acc, elem) => acc + (elem.price * elem.amount), 0);
         price = Math.round(price);
     }
+
+    // page
     return (
         <div className="bg-amber-300 h-44 flex gap-5 items-center ">
             <div>
@@ -19,14 +30,14 @@ const Bar = ({order, setOrder, takeout, setTakeout}) => {
                 <div className="text-white font-bold">Price: {price}$</div>
                 <Link to="/" className="text-center" onClick={() => {
                     setTakeout(false)
-                    setOrder([])
+                    dispatch(setProducts([]))
                 }}>
                     <button className="rounded-lg bg-blue-500 text-white font-bold p-1 hover:bg-blue-600">Start again</button>
                 </Link>
             </div>
             <div>
                 <ul className="flex gap-10 items-center justify-center">
-                    {order.map(product => (
+                    {currentOrder.map(product => (
                         <li key={product.id} className="flex flex-col bg-amber-500 items-center justify-center p-4 rounded-lg">
                             <div className="max-w-xs b">{product.name}   {product.amount}x</div>
                             <div>{product.price * product.amount}$</div>

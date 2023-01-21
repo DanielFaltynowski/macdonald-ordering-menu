@@ -1,4 +1,8 @@
+import {useSelector} from "react-redux";
+
 const EditMenu = () => {
+    const currentOrder = useSelector((state) => state.currentOrder.currentProduct)
+    console.log(currentOrder)
     const temp = {
         name: "Product",
         price: 2.99,
@@ -23,7 +27,14 @@ const EditMenu = () => {
 
     }
     return (
-        <div>Hello World</div>
+        <div className="flex flex-col items-center justify-center">
+            <div className="w-3/4">
+                <div className="flex justify-between">
+                    <div>Hello</div>
+                    <div>Hello</div>
+                </div>
+            </div>
+        </div>
     )
 }
 export default EditMenu;

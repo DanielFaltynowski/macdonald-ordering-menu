@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const OrderType = ({order, setOrder, takeout, setTakeout}) => {
+const OrderType = ({takeout, setTakeout}) => {
     const handleTakeoutChoice = () => {
         setTakeout(!takeout)
     }
