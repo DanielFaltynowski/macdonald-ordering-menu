@@ -11,6 +11,7 @@ const EditMenu = () => {
     // variables
     const currentOrder = useSelector((state) => state.currentOrder.currentProduct);
     const order = useSelector((state) => state.currentOrder.order);
+    const addPrice = currentOrder.price
     const cost = currentOrder.price
     const [price, setPrice] = useState(currentOrder.price);
     const [amount, setAmount] = useState(1);
@@ -22,7 +23,7 @@ const EditMenu = () => {
         const createTemplate = {
             id: uuidv4(),
             name: currentOrder.name,
-            price: cost,
+            price: addPrice,
             amount: amount
         }
         dispatch(setProducts([...order, createTemplate]))
@@ -53,7 +54,7 @@ const EditMenu = () => {
         <div className="flex flex-col items-center justify-center">
             <div className="w-3/4 m-24">
                 <div className="flex justify-around">
-                    <div className="shadow-md shadow-gray-300 p-10 rounded-2xl text-center flex justify-between items-center gap-5">
+                    <div className="shadow-md shadow-gray-300 p-10 rounded-2xl text-center flex justify-between items-center">
                         <div>
                             <div className="rounded-full w-64 h-64 bg-gray-400">
 
@@ -98,7 +99,7 @@ const EditMenu = () => {
                     <div className="shadow-md shadow-gray-300 p-10 rounded-2xl text-center">
                         <div className="text-4xl font-black p-5">Edit Product</div>
                         <div>
-                            <EditBar price={price} setPrice={setPrice}></EditBar>
+                            <EditBar price={price} setPrice={setPrice} addPrice={addPrice}></EditBar>
                         </div>
                     </div>
                 </div>

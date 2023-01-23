@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setCurrentProducts} from "../redux/currentOrder";
 import {round} from "lodash";
 
-const EditBar = ({price, setPrice}) => {
+const EditBar = ({price, setPrice, addPrice}) => {
 
     //variables
     const prod = useSelector((state) => state.currentOrder.currentProduct);
@@ -22,11 +22,13 @@ const EditBar = ({price, setPrice}) => {
                                 if (newObj.pickles > 0 && newObj.pickles < 2) {
                                     newObj.pickles = newObj.pickles + 1
                                     setPrice(round(price + 0.3, 2))
+                                    addPrice += 0.3
                                     dispatch(setCurrentProducts(newObj))
                                 }
                                 if (newObj.pickles === 0) {
                                     newObj.pickles = newObj.pickles + 1
                                     setPrice(round(price + 0.3, 2))
+                                    addPrice += 0.3
                                     dispatch(setCurrentProducts(newObj))
                                 }
                             }} disabled={prod.pickles === 2}>+</button>
@@ -36,11 +38,13 @@ const EditBar = ({price, setPrice}) => {
                                 if (newObj.pickles > 0 && newObj.pickles < 2) {
                                     newObj.pickles = newObj.pickles - 1
                                     setPrice(round(price - 0.3, 2))
+                                    addPrice -= 0.3
                                     dispatch(setCurrentProducts(newObj))
                                 }
                                 if (newObj.pickles === 2) {
                                     newObj.pickles = newObj.pickles - 1
                                     setPrice(round(price - 0.3, 2))
+                                    addPrice -= 0.3
                                     dispatch(setCurrentProducts(newObj))
                                 }
                             }} disabled={prod.pickles === 0}>-</button>
