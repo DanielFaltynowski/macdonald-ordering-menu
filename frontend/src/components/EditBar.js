@@ -13,7 +13,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
     return (
         <div>
             <div className="">
-                {(prod.type === "burger" || prod.type === "sandwiches") && (
+                {(prod.type === "burger" || prod.type === "sandwich") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Pickle Slides</div>
                         <div>
@@ -53,7 +53,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
                 )}
             </div>
             <div className="">
-                {(prod.type === "burger" || prod.type === "sandwiches") && (
+                {(prod.type === "burger" || prod.type === "sandwich") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Onion</div>
                         <div>
@@ -89,7 +89,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
                 )}
             </div>
             <div className="">
-                {(prod.type === "burger" || prod.type === "sandwiches") && (
+                {(prod.type === "burger" || prod.type === "sandwich") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Becon</div>
                         <div>
@@ -125,7 +125,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
                 )}
             </div>
             <div className="">
-                {(prod.type === "burger" || prod.type === "sandwiches") && (
+                {(prod.type === "burger" || prod.type === "sandwich") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Lettuce</div>
                         <div>
@@ -161,7 +161,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
                 )}
             </div>
             <div className="">
-                {(prod.type === "burger" || prod.type === "sandwiches") && (
+                {(prod.type === "burger" || prod.type === "sandwich") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Big Bun</div>
                         <div>
@@ -197,7 +197,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
                 )}
             </div>
             <div className="">
-                {(prod.type === "burger" || prod.type === "sandwiches") && (
+                {(prod.type === "burger" || prod.type === "sandwich") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Egg</div>
                         <div>
@@ -233,7 +233,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
                 )}
             </div>
             <div className="">
-                {(prod.type === "burger" || prod.type === "sandwiches" || prod.type === "nuggets" || prod.type === "fands") && (
+                {(prod.type === "burger" || prod.type === "sandwich" || prod.type === "nuggets" || prod.name === "Fries") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Salt</div>
                         <div>
@@ -269,7 +269,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
                 )}
             </div>
             <div className="">
-                {(prod.type === "burger" || prod.type === "sandwiches" || prod.type === "nuggets" || prod.type === "fands") && (
+                {(prod.type === "burger" || prod.type === "sandwich" || prod.type === "nuggets" || prod.name === "Fries") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Pepper</div>
                         <div>
@@ -305,7 +305,7 @@ const EditBar = ({price, setPrice, addPrice}) => {
                 )}
             </div>
             <div className="">
-                {(prod.type === "beverages") && (
+                {(prod.type === "beverage") && (
                     <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
                         <div className="font-bold p-5">Ice</div>
                         <div>
@@ -336,6 +336,78 @@ const EditBar = ({price, setPrice, addPrice}) => {
                                     dispatch(setCurrentProducts(newObj))
                                 }
                             }} disabled={prod.ice === 0}>-</button>
+                        </div>
+                    </div>
+                )}
+            </div>
+            <div className="">
+                {(prod.type === "coffee") && (
+                    <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
+                        <div className="font-bold p-5">No-Cofeine</div>
+                        <div>
+                            <button className="w-8 h-8 p-0.25 rounded-full bg-lime-600 text-white font-black disabled:bg-gray-300" onClick={() => {
+                                const newObj = {...prod}
+                                if (newObj.nocofeine > 0 && newObj.nocofeine < 2) {
+                                    newObj.nocofeine = newObj.nocofeine + 1
+                                    setPrice(round(price + 0.3, 2))
+                                    dispatch(setCurrentProducts(newObj))
+                                }
+                                if (newObj.nocofeine === 0) {
+                                    newObj.nocofeine = newObj.nocofeine + 1
+                                    setPrice(round(price + 0.3, 2))
+                                    dispatch(setCurrentProducts(newObj))
+                                }
+                            }} disabled={prod.nocofeine === 2}>+</button>
+                            <div className="font-black">{prod.nocofeine}</div>
+                            <button className="w-8 h-8 p-0.25 rounded-full bg-red-600 text-white font-black disabled:bg-gray-300" onClick={() => {
+                                const newObj = {...prod}
+                                if (newObj.nocofeine > 0 && newObj.nocofeine < 2) {
+                                    newObj.nocofeine = newObj.nocofeine - 1
+                                    setPrice(round(price - 0.3, 2))
+                                    dispatch(setCurrentProducts(newObj))
+                                }
+                                if (newObj.nocofeine === 2) {
+                                    newObj.nocofeine = newObj.nocofeine - 1
+                                    setPrice(round(price - 0.3, 2))
+                                    dispatch(setCurrentProducts(newObj))
+                                }
+                            }} disabled={prod.nocofeine === 0}>-</button>
+                        </div>
+                    </div>
+                )}
+            </div>
+            <div className="">
+                {(prod.type === "coffee") && (
+                    <div className="flex items-center justify-between p-3 rounded-2xl border-4 border-solid mb-3">
+                        <div className="font-bold p-5">Sugar</div>
+                        <div>
+                            <button className="w-8 h-8 p-0.25 rounded-full bg-lime-600 text-white font-black disabled:bg-gray-300" onClick={() => {
+                                const newObj = {...prod}
+                                if (newObj.sugar > 0 && newObj.sugar < 2) {
+                                    newObj.sugar = newObj.sugar + 1
+                                    setPrice(round(price + 0.3, 2))
+                                    dispatch(setCurrentProducts(newObj))
+                                }
+                                if (newObj.sugar === 0) {
+                                    newObj.sugar = newObj.sugar + 1
+                                    setPrice(round(price + 0.3, 2))
+                                    dispatch(setCurrentProducts(newObj))
+                                }
+                            }} disabled={prod.sugar === 2}>+</button>
+                            <div className="font-black">{prod.sugar}</div>
+                            <button className="w-8 h-8 p-0.25 rounded-full bg-red-600 text-white font-black disabled:bg-gray-300" onClick={() => {
+                                const newObj = {...prod}
+                                if (newObj.sugar > 0 && newObj.sugar < 2) {
+                                    newObj.sugar = newObj.sugar - 1
+                                    setPrice(round(price - 0.3, 2))
+                                    dispatch(setCurrentProducts(newObj))
+                                }
+                                if (newObj.sugar === 2) {
+                                    newObj.sugar = newObj.sugar - 1
+                                    setPrice(round(price - 0.3, 2))
+                                    dispatch(setCurrentProducts(newObj))
+                                }
+                            }} disabled={prod.sugar === 0}>-</button>
                         </div>
                     </div>
                 )}

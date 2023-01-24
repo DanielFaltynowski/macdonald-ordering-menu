@@ -29,27 +29,7 @@ const EditMenu = () => {
         dispatch(setProducts([...order, createTemplate]))
         dispatch(setCurrentProducts(null))
     }
-    const temp = {
-        name: "Product",
-        price: 2.99,
-        vege: false,
-        desc: "some description",
-        type: "burgers",
-        pickles: 0,
-        onion: 0,
-        becon: 0,
-        lettuce: 0,
-        bigbun: 0,
-        salt: 0,
-        pepper: 0,
-        egg: 0,
-        butter: 0,
-        tomato: 0,
-        ice: 0,
-        nocofeine: 0,
-        sugar: 0,
 
-    }
     return (
         <div className="flex flex-col items-center justify-center">
             <div className="w-3/4 m-24">
@@ -60,7 +40,7 @@ const EditMenu = () => {
 
                             </div>
                         </div>
-                        <div>
+                        <div className="">
                             <div className="text-6xl font-black p-5">{currentOrder.name}</div>
                             <div className="max-w-xs">{currentOrder.desc}</div>
                             <div className="p-2 font-black">{price}$</div>

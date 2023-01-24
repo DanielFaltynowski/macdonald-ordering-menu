@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setBar, setProducts} from "../redux/currentOrder";
+import {setBar, setCurrentData, setProducts} from "../redux/currentOrder";
 import {round} from "lodash";
 
 const Bar = ({takeout, setTakeout}) => {
@@ -34,6 +34,7 @@ const Bar = ({takeout, setTakeout}) => {
                         setTakeout(false)
                         dispatch(setBar(false))
                         dispatch(setProducts([]))
+                        dispatch(setCurrentData(null))
                     }}>
                         <button className="rounded-lg bg-blue-500 text-white font-bold p-1 hover:bg-blue-600">Start
                             again
