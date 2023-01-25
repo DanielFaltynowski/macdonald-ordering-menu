@@ -69,10 +69,10 @@ const EditMenu = () => {
                             </div>
                             {currentOrder.vege && <div className="text-green-400 p-5">Vegan Safe</div>}
                             <Link to="/getstarted/menu" onClick={addToOrder}>
-                                <button className="p-4 bg-green-500 text-white font-black text-2xl rounded-3xl mr-5">Add</button>
+                                <button className="p-4 bg-green-500 text-white font-black text-2xl rounded-3xl mr-5 hover:bg-green-600">Add</button>
                             </Link>
                             <Link to="/getstarted/menu">
-                                <button className="p-4 bg-red-500 text-white font-black text-2xl rounded-3xl">Back</button>
+                                <button className="p-4 bg-red-500 text-white font-black text-2xl rounded-3xl hover:bg-red-600">Back</button>
                             </Link>
                         </div>
                     </div>

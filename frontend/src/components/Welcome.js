@@ -24,7 +24,20 @@ const Welcome = () => {
                         </Link>
                     </div>
                 </div>
-                <div><div className="font-black text-gray-800 text-4xl">{sample(headers)}</div></div>
+                <div>
+                    <div className="font-black text-gray-800 text-4xl">{sample(headers)}</div>
+                </div>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+                <div>
+                    <div className="w-3/4 flex justify-evenly m-5 mt-48">
+                        <Link to="/adminlogin">
+                            <div className="text-white w-48 bg-yellow-300 h-16 rounded-3xl flex justify-center items-center hover:bg-yellow-200 hover:text-yellow-800">
+                                <div className="font-black text-xl">Admin Mode</div>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
             </div>
         </div>
     )
