@@ -2,9 +2,9 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {setBar} from "../redux/currentOrder";
 import {sample} from "lodash";
+import {useLayoutEffect, useState} from "react";
 
 const Welcome = () => {
-    const dispatch = useDispatch();
     const headers = [
         "Only today, if you add some extras to your order, second ones will be for free!",
         "Smile is your the most valid weapon!",
@@ -12,6 +12,16 @@ const Welcome = () => {
         "Nice to see you!",
         "The McDonald's golden arch logo is iconic throughout the world!"
     ]
+    const dispatch = useDispatch();
+    const [text, setText] = useState(sample(headers));
+
+    useLayoutEffect(() => {
+        const intervalId = setInterval(() => {
+            setText(text => sample(headers));
+        }, 5000);
+        return () => clearInterval(intervalId);
+    }, []);
+
     return (
         <div>
             <div className="flex flex-col items-center justify-center">
@@ -25,7 +35,8 @@ const Welcome = () => {
                     </div>
                 </div>
                 <div>
-                    <div className="font-black text-gray-800 text-4xl">{sample(headers)}</div>
+                    {/*<div className="font-black text-gray-800 text-4xl">{sample(headers)}</div>*/}
+                    <div className="font-black text-gray-800 text-4xl">{text}</div>
                 </div>
             </div>
             <div className="flex flex-col items-center justify-center">

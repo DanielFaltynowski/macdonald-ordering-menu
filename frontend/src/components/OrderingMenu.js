@@ -3,7 +3,6 @@ import ProductsList from "./ProductsList";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setBar} from "../redux/currentOrder";
-import useFetch from "../customHooks/useFetch";
 
 const OrderingMenu = () => {
     const order = useSelector((state) => state.currentOrder.order)

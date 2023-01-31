@@ -78,6 +78,13 @@ def get_admin(tx):
     return admin
 
 
+# def post_products(tx, newProduct):
+#     newProduct = request.get_json()
+#     # MATCH (menu:Menu), (type:Beverages{type:"beverage"}) CREATE (menu)-[:PRODUCT]->(type)-[:INCLUDE]->(:Product{desc:"sth"})
+#     query = f"MATCH (menu:Menu), (type:Beverages{type:"beverage"}) CREATE (menu)-[:PRODUCT]->(type)-[:INCLUDE]->(:Product{desc:"sth"})"
+#     results = tx.run(query).data()
+#     return "Node created"
+
 @app.route('/products', methods=['GET'])
 def get_products_route():
     with driver.session() as session:
@@ -103,6 +110,14 @@ def get_products_pattern_route(pattern):
 
     response = {'products': products}
     return jsonify(response)
+
+
+# @app.route('/products', methods=['POST'])
+# def post_products_route():
+#     with driver.session() as session:
+#         products = session.write_transaction(post_products, )
+#
+#     return jsonify(response)
 
 
 if __name__ == '__main__':

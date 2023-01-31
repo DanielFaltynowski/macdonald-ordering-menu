@@ -9,6 +9,7 @@ import EditMenu from "./components/EditMenu";
 import PayMenu from "./components/PayMenu";
 import OrderCode from "./components/OrderCode";
 import AdminLogin from "./components/AdminLogin";
+import NotFound from "./components/NotFound";
 function App() {
     const [takeout, setTakeout] = useState(false)
     return (
@@ -21,8 +22,9 @@ function App() {
                     <Route path="/getstarted/menu" element={<OrderingMenu />} />
                     <Route path="/getstarted/menu/add" element={<EditMenu />} />
                     <Route path="/getstarted/payfor" element={<PayMenu />} />
-                    <Route path="/getstarted/payfor/ordercode" element={<OrderCode />} />
+                    <Route path="/getstarted/payfor/ordercode" element={<OrderCode takeout={takeout} setTakeout={setTakeout}/>} />
                     <Route path="/adminlogin" element={<AdminLogin />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
         </div>

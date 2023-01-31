@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {setCurrentData, setProducts} from "../redux/currentOrder";
 
-const OrderCode = () => {
+const OrderCode = ({takeout, setTakeout}) => {
     const dispatch = useDispatch();
     const randomCode = Math.ceil(Math.random() * 100)
     return (
@@ -12,6 +12,7 @@ const OrderCode = () => {
                 <Link to="/" onClick={() => {
                     dispatch(setProducts([]))
                     dispatch((setCurrentData(null)))
+                    setTakeout(false)
                 }}>
                     <button className="p-6 text-5xl rounded-3xl font-black text-white bg-orange-500 hover:bg-orange-300 hover:text-orange-700">Back to main menu</button>
                 </Link>

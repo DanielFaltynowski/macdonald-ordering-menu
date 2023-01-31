@@ -1,7 +1,6 @@
 import {Link} from "react-router-dom";
-import useFetch from "../customHooks/useFetch";
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentData, setData} from "../redux/currentOrder";
+import {setCurrentData} from "../redux/currentOrder";
 import {useEffect} from "react";
 import axios from "axios";
 
