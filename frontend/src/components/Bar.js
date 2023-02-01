@@ -2,6 +2,8 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setBar, setCurrentData, setProducts} from "../redux/currentOrder";
 import {round} from "lodash";
+import Cookies from "js-cookie";
+import {useEffect, useState} from "react";
 
 const Bar = ({takeout, setTakeout}) => {
 
@@ -9,7 +11,12 @@ const Bar = ({takeout, setTakeout}) => {
     const dispatch = useDispatch();
     const currentOrder = useSelector((state) => state.currentOrder.order)
     const bar = useSelector((state) => state.currentOrder.bar)
+    const [initialCart, setInitialCart] = useState([]);
     let price = currentOrder.reduce((acc, elem) => acc + (elem.price * elem.amount), 0);
+    useEffect(() => {
+        const cookieCart = Cookies.get('cart');
+        setInitialCart(cookieCart);
+    }, []);
 
     // functions
     const handleDeleteOrder = (id) => {
@@ -17,6 +24,7 @@ const Bar = ({takeout, setTakeout}) => {
         dispatch(setProducts(newOrderList))
         price = currentOrder.reduce((acc, elem) => acc + (elem.price * elem.amount), 0);
         price = Math.round(price);
+        // Cookies.set('cart', currentOrder);
     }
 
     // page
