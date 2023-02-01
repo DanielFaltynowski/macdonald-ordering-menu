@@ -194,3 +194,5 @@
 [2023-02-01 23:11:15.918117] Cookie set
 [2023-02-01 23:11:22.291653] Get admin data request used
 [2023-02-01 23:23:41.206975] Get admin data request used
+[2023-02-01 23:29:04.519020] Get products request used
+[2023-02-01 23:29:04.519507] Get products request used
