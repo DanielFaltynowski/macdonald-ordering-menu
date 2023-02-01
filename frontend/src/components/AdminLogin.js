@@ -1,8 +1,6 @@
 import {Link} from "react-router-dom";
 import {useFormik} from "formik";
 import axios from "axios";
-import Select from 'react-select'
-import {setCurrentData} from "../redux/currentOrder";
 import {useState} from "react";
 import {value} from "lodash/seq";
 
@@ -29,35 +27,6 @@ const AdminLogin = () => {
                 .catch(error => {
                     console.log(error);
                 });
-        }
-    })
-    const formik2 = useFormik({
-        initialValues: {
-            methodType: '',
-            productId: '',
-            productName: '',
-            productPrice: '',
-            productType: '',
-            productVege: '',
-            productDesc: ''
-        },
-        onSubmit: (values) => {
-            console.log("hey")
-            // const newProduct = {
-            //     name: values.productName,
-            //     price: values.productPrice,
-            //     vege: values.productVege,
-            //     desc: values.productDesc,
-            //     type: values.productType,
-            //     id: values.productId
-            // }
-            // axios.post('https://example.com/api/submit', newProduct)
-            //     .then(response => {
-            //         console.log(response.data);
-            //     })
-            //     .catch(error => {
-            //         console.log(error);
-            //     });
         }
     })
     return (
@@ -97,48 +66,22 @@ const AdminLogin = () => {
                     </form>
                 </div>
             </div>
-            {editBar && <div>
+            {editBar && <div className="mb-16">
                 <div>
-                    <form className="flex flex-col justify-center gap-3">
-                        <label>Method type</label>
-                        <select className="border-3 rounded-md bg-gray-200 max-w-sm p-2" name="methodType" onChange={formik2.handleChange} value={formik2.values.methodType}>
-                            <option value="option1">Add Product</option>
-                            <option value="option2">Edit Product</option>
-                            <option value="option3">Delete Product</option>
-                        </select>
-                        <div>{formik2.values.methodType}</div>
-
-                        <label>Product Id</label>
-                        <input name="productId" onChange={formik2.handleChange} type="number" className="border-3 rounded-md bg-gray-200 max-w-sm p-1"/>
-                        <div>{formik2.values.productId}</div>
-
-                        <label>Product Name</label>
-                        <input name="productName" onChange={formik2.handleChange} type="text" className="border-3 rounded-md bg-gray-200 max-w-sm p-1"/>
-                        <div>{formik2.values.productName}</div>
-
-                        <label>Product Price</label>
-                        <input name="productPrice" onChange={formik2.handleChange} type="number" className="border-3 rounded-md bg-gray-200 max-w-sm p-1"/>
-                        <div>{formik2.values.productPrice}</div>
-
-                        <label>Product Type</label>
-                        <input name="productType" onChange={formik2.handleChange} type="text" className="border-3 rounded-md bg-gray-200 max-w-sm p-1"/>
-                        <div>{formik2.values.productType}</div>
-
-                        <label>Product is vege?</label>
-                        <select className="border-3 rounded-md bg-gray-200 max-w-sm p-2" name="productVege" onChange={formik2.handleChange} value={formik2.values.productVege}>
-                            <option value="option1">True</option>
-                            <option value="option2">False</option>
-                        </select>
-                        <div>{formik2.values.productVege}</div>
-
-                        <div>Product Description</div>
-                        <div className="mb-3">
-                            <textarea className="border border-gray-300 border-3 rounded-md max-w-sm p-1" name="productDesc" cols="30" rows="10"></textarea>
-                        </div>
-                        <div>{formik2.values.productDesc}</div>
-                        <button onSubmit={formik.handleSubmit} className="mt-3 mb-24 font-black text-white w-24 bg-purple-700 h-8 p-5 rounded-2xl flex justify-center items-center hover:bg-purple-300 hover:text-purple-800">Make</button>
-                    </form>
+                    <div className="text-2xl font-black text-center m-10">What do you want to do?</div>
                 </div>
+                <Link to="/adminmode/add">
+                    <button className="bg-green-500 text-white text-2xl p-3 font-black rounded-2xl hover:bg-green-300 hover:text-green-800 mr-10">Add new product</button>
+                </Link>
+                <Link to="/adminmode/edit">
+                    <button className="bg-blue-500 text-white text-2xl p-3 font-black rounded-2xl hover:bg-blue-300 hover:text-blue-800">Edit product</button>
+                </Link>
+                <Link to="/adminmode/delete">
+                    <button className="bg-red-500 text-white text-2xl p-3 font-black rounded-2xl hover:bg-red-300 hover:text-red-800 ml-10">Delete product</button>
+                </Link>
+                <Link to="/adminmode/change">
+                    <button className="bg-pink-500 text-white text-2xl p-3 font-black rounded-2xl hover:bg-pink-300 hover:text-pink-800 ml-10">Change login and password</button>
+                </Link>
             </div>}
         </div>
     );

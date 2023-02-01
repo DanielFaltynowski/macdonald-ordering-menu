@@ -40,12 +40,12 @@ const OrderingMenu = () => {
     }, []);
     const template = (
         <div className="flex flex-col gap-10 pt-24">
-            <ProductsList groupOf={burgers} header="BURGERS"></ProductsList>
-            <ProductsList groupOf={sandwiches} header="SANDWICHES"></ProductsList>
-            <ProductsList groupOf={nuggets} header="NUGGETS"></ProductsList>
-            <ProductsList groupOf={fands} header="FRIES & SIDES"></ProductsList>
-            <ProductsList groupOf={beverages} header="BEVERAGES"></ProductsList>
-            <ProductsList groupOf={coffees} header="COFFEES"></ProductsList>
+            {burgers.length !== 0 && <ProductsList groupOf={burgers} header="BURGERS"></ProductsList>}
+            {sandwiches.length !== 0 && <ProductsList groupOf={sandwiches} header="SANDWICHES"></ProductsList>}
+            {nuggets.length !== 0 && <ProductsList groupOf={nuggets} header="NUGGETS"></ProductsList>}
+            {fands.length !== 0 && <ProductsList groupOf={fands} header="FRIES & SIDES"></ProductsList>}
+            {beverages.length !== 0 && <ProductsList groupOf={beverages} header="BEVERAGES"></ProductsList>}
+            {coffees.length !== 0 && <ProductsList groupOf={coffees} header="COFFEES"></ProductsList>}
         </div>
     )
     const formik = useFormik({
