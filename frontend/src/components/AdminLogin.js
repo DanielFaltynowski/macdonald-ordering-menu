@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {json, Link} from "react-router-dom";
 import {useFormik} from "formik";
 import axios from "axios";
 import {useState} from "react";
@@ -7,6 +7,7 @@ import {value} from "lodash/seq";
 const AdminLogin = () => {
     const options = [{value: 'option1', label: 'Add Product'}, {value: 'option2', label: 'Edit Product'}, {value: 'option3', label: 'Delete Product'}]
     const options2 = [{value: 'option4', label: 'True'}, {value: 'option5', label: 'False'}]
+    const [lastBought, setLastBought] = useState("");
     const [editBar, setEditBar] = useState(false)
     const formik = useFormik({
         initialValues: {
@@ -27,6 +28,10 @@ const AdminLogin = () => {
                 .catch(error => {
                     console.log(error);
                 });
+                axios.get('http://127.0.0.1:5000/stats/get').then(response => {
+                    console.log(response)
+                    setLastBought(response.data)
+                })
         }
     })
     return (
@@ -82,6 +87,8 @@ const AdminLogin = () => {
                 <Link to="/adminmode/change">
                     <button className="bg-pink-500 text-white text-2xl p-3 font-black rounded-2xl hover:bg-pink-300 hover:text-pink-800 ml-10">Change login and password</button>
                 </Link>
+                <div className="text-center m-5 mt-16">Last Bought:</div>
+                <div className="text-center m-5 mb-16">{lastBought}</div>
             </div>}
         </div>
     );

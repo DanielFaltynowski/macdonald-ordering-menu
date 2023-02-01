@@ -1,9 +1,11 @@
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setCurrentData, setProducts} from "../redux/currentOrder";
+import axios from "axios";
 
 const OrderCode = ({takeout, setTakeout}) => {
     const dispatch = useDispatch();
+    const currentOrder = useSelector((state) => state.currentOrder.order)
     const randomCode = Math.ceil(Math.random() * 100)
     return (
         <div className="flex flex-col items-center justify-center">
@@ -13,6 +15,13 @@ const OrderCode = ({takeout, setTakeout}) => {
                     dispatch(setProducts([]))
                     dispatch((setCurrentData(null)))
                     setTakeout(false)
+                    console.log(currentOrder)
+                    const temp = JSON.stringify({data: [...currentOrder]})
+                    axios.post('http://127.0.0.1:5000/stats/post', temp, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then((res) => console.log(res))
                 }}>
                     <button className="p-6 text-5xl rounded-3xl font-black text-white bg-orange-500 hover:bg-orange-300 hover:text-orange-700">Back to main menu</button>
                 </Link>

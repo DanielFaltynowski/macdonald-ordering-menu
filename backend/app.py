@@ -3,7 +3,7 @@ from typing import Tuple, List
 from datetime import datetime
 
 from dotenv import load_dotenv
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
 from neo4j import GraphDatabase
 from cryptography.fernet import Fernet
@@ -174,6 +174,27 @@ def add_products_route():
         result = session.run(query).single()
     save_to_file(f"[{datetime.now()}] Add product request used\n")
     return {"message": "Node added successfully"}, 201
+
+
+@app.route('/stats/post', methods=['POST'])
+def post_cookie_to_analysis():
+    body = request.get_json()
+    products = ""
+    for product in body["data"]:
+        products += product["name"] + "\n"
+    response = make_response("Ustawiono cookie")
+    response.set_cookie("last_bought", products)
+    save_to_file(f"[{datetime.now()}] Cookie set\n")
+    return response
+
+
+@app.route('/stats/get', methods=['GET'])
+def get_cookie_to_analysis():
+    cookie_value = request.cookies.get("last_bought")
+    print(cookie_value)
+    if cookie_value is None:
+        return "None"
+    return cookie_value
 
 
 @app.route(f"/products/prod_id>", methods=['DELETE'])

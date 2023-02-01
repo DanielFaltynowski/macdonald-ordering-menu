@@ -11,12 +11,7 @@ const Bar = ({takeout, setTakeout}) => {
     const dispatch = useDispatch();
     const currentOrder = useSelector((state) => state.currentOrder.order)
     const bar = useSelector((state) => state.currentOrder.bar)
-    const [initialCart, setInitialCart] = useState([]);
     let price = currentOrder.reduce((acc, elem) => acc + (elem.price * elem.amount), 0);
-    useEffect(() => {
-        const cookieCart = Cookies.get('cart');
-        setInitialCart(cookieCart);
-    }, []);
 
     // functions
     const handleDeleteOrder = (id) => {
