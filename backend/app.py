@@ -197,7 +197,7 @@ def get_cookie_to_analysis():
     return cookie_value
 
 
-@app.route(f"/products/prod_id>", methods=['DELETE'])
+@app.route(f"/products/<prod_id>", methods=['DELETE'])
 def delete_products_id_route(prod_id):
     query = "MATCH (n:Product{" + f"""id:"{prod_id}" """ + "}) DETACH DELETE n;"
     with driver.session() as session:

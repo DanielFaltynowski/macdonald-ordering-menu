@@ -19,7 +19,7 @@ const DeleteProduct = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(() => console.log('product added')).then(() => {
+            }).then(() => console.log('product deleted')).then(() => {
                 setDeleted(true)
             }).catch((error) => console.log(error))
         }
