@@ -1,5 +1,4 @@
 import os
-from typing import Tuple, List
 from datetime import datetime
 
 from dotenv import load_dotenv
@@ -224,5 +223,43 @@ def put_products_id_route(prod_id):
     return {"message": "Node updated successfully"}, 204
 
 
+@app.route(f"/opinions", methods=['POST'])
+def post_opinion_route():
+    product = request.get_json()
+    temp1 = f"""MATCH (n:Opinions) CREATE (n)-[:HAVE]->(:Opinion""" + "{"
+    temp2 = f"""id:"{product["id"]}", opinion:"{product["opinion"]}" """ + "});"
+    query = temp1 + temp2
+    with driver.session() as session:
+        result = session.run(query).single()
+    save_to_file(f"[{datetime.now()}] Add opinion request used\n")
+    return {"message": "Node added successfully"}, 201
+
+
+@app.route(f"/opinions", methods=['GET'])
+def get_opinion_route():
+    query = f"""MATCH (n:Opinion) RETURN n;"""
+    with driver.session() as session:
+        Request = session.run(query).data()
+        products = [{
+            "id": result["n"]["id"],
+            "opinion": result["n"]["id"]
+        } for result in Request]
+
+    save_to_file(f"[{datetime.now()}] Get opinion request used\n")
+    return {"data": products}
+
+
+@app.route(f"/opinions/<opinion_id>", methods=['DELETE'])
+def delete_opinion_route(opinion_id):
+    product = request.get_json()
+    temp1 = """MATCH (n:Opinion:{""" + f"""id:"{opinion_id}" """ + """}) """
+    temp2 = f"""DETACH DELETE n;"""
+    query = temp1 + temp2
+    with driver.session() as session:
+        result = session.run(query).single()
+    save_to_file(f"[{datetime.now()}] Add opinion request used\n")
+    return {"message": "Node added successfully"}, 201
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(host="127.0.0.1", port=5000, ssl_context=('ssl/certificate.crt', "ssl/ssl.key"))

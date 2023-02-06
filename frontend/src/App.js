@@ -14,6 +14,7 @@ import EditProduct from "./components/editComponents/EditProduct";
 import AddProduct from "./components/editComponents/AddProduct";
 import DeleteProduct from "./components/editComponents/DeleteProduct";
 import ChangeLogin from "./components/editComponents/ChangeLogin";
+import SendOpinion from "./components/SendOpinion";
 function App() {
     const [takeout, setTakeout] = useState(false)
     return (
@@ -32,6 +33,8 @@ function App() {
                     <Route path="/adminmode/edit" element={<EditProduct />} />
                     <Route path="/adminmode/delete" element={<DeleteProduct />} />
                     <Route path="/adminmode/change" element={<ChangeLogin />} />
+                    <Route path="/getstarted/payfor/opinion" element={<SendOpinion />} />
+
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
