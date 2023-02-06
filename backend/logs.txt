@@ -4,3 +4,8 @@
 [2023-02-06 18:22:10.331945] Get products request used
 [2023-02-06 18:22:10.332127] Get products request used
 [2023-02-06 18:23:49.834029] Add opinion request used
+[2023-02-06 19:38:44.193031] Get products request used
+[2023-02-06 19:38:44.194327] Get products request used
+[2023-02-06 19:38:47.115672] Get products request used
+[2023-02-06 19:38:47.116279] Get products request used
+[2023-02-06 19:39:05.237394] Add opinion request used
